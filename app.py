@@ -16,6 +16,10 @@ def energy():
         columns={"Primary energy consumption per capita (kWh/person)": "kWh"})
     chart = px.line(USA, x="Year", y="kWh",
                     title="US Energy Consumption from 1965 to 2021")
+    chart.update_xaxes(showline=True, linewidth=2,
+                       linecolor='black', mirror=True)
+    chart.update_yaxes(showline=True, linewidth=2,
+                       linecolor='black', mirror=True)
     graphJSON = json.dumps(chart, cls=plotly.utils.PlotlyJSONEncoder)
     return render_template("energy.html", graphJSON=graphJSON)
 
