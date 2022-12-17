@@ -14,7 +14,8 @@ def energy():
     US = data.loc[data['Entity'] == "United States"]
     USA = US.rename(
         columns={"Primary energy consumption per capita (kWh/person)": "kWh"})
-    chart = px.bar(USA, x="Year", y="kWh")
+    chart = px.line(USA, x="Year", y="kWh",
+                    title="US Energy Consumption from 1965 to 2021")
     graphJSON = json.dumps(chart, cls=plotly.utils.PlotlyJSONEncoder)
     return render_template("energy.html", graphJSON=graphJSON)
 

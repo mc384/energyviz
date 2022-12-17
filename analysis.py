@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import plotly.express as px
 
 data = pd.read_csv("energy.csv")
 # print(data.columns)
