@@ -21,3 +21,4 @@ def energy():
 
 if __name__ == "__main__":
     app.run(debug=True)
+# Todo: change bar to line graph, consider adding more graphs, consider adding input to toggle country, customize front end with html/css
