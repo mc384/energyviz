@@ -8,4 +8,6 @@ data = pd.read_csv("energy.csv")
 US = data.loc[data['Entity'] == "United States"]
 USA = US.rename(
     columns={"Primary energy consumption per capita (kWh/person)": "kWh"})
-print(USA.head())
+# print(USA.head())
+# Array of all unique countries in the dataset
+# print(data['Entity'].unique())

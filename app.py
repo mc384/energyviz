@@ -11,6 +11,7 @@ app = Flask(__name__)
 @app.route("/")
 def energy():
     data = pd.read_csv("energy.csv")
+    countries = data['Entity'].unique()
     US = data.loc[data['Entity'] == "United States"]
     USA = US.rename(
         columns={"Primary energy consumption per capita (kWh/person)": "kWh"})
@@ -21,7 +22,7 @@ def energy():
     chart.update_yaxes(showline=True, linewidth=2,
                        linecolor='black', mirror=True)
     graphJSON = json.dumps(chart, cls=plotly.utils.PlotlyJSONEncoder)
-    return render_template("energy.html", graphJSON=graphJSON)
+    return render_template("energy.html", graphJSON=graphJSON, countries=countries)
 
 
 if __name__ == "__main__":

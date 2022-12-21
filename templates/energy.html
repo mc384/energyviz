@@ -16,6 +16,11 @@
       This is a visualization of energy consumption in kWh per capita per person
       in the United States from 1965-2021.
     </p>
+    <select name="countries" method="GET" action="/">
+      {% for country in countries %}
+      <option value="{{country}}" selected>{{country}}</option>
+      {% endfor %}
+    </select>
   </body>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <script type="text/javascript">
