@@ -8,23 +8,32 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='css/main.css') }}"
     />
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      function dyn(selection) {
+        $.getJSON({
+          url: "/callback",
+          data: { data: selection },
+          success: function (result) {
+            Plotly.newPlot("chart", result, {});
+          },
+        });
+      }
+    </script>
   </head>
   <body>
     <h1>Historical Energy Consumption</h1>
-    <div id="chart" class="chart" ”></div>
     <p>
       This is a visualization of energy consumption in kWh per capita per person
-      in the United States from 1965-2021.
+      in the given country from 1965-2021.
     </p>
-    <select name="countries" method="GET" action="/">
-      {% for country in countries %}
-      <option value="{{country}}" selected>{{country}}</option>
-      {% endfor %}
-    </select>
+    <input type="text" id="fname" name="fname" onchange="dyn(this.value)" />
+    <div id="chart" class="chart" ”></div>
+    <h1><a href="yearly">Compare with total consumption</a></h1>
   </body>
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <script type="text/javascript">
-    var graphs = {{graphJSON | safe }};
-    Plotly.plot('chart',graphs, {});
+    var graphs = {{ graphJSON | safe }};
+    Plotly.newPlot('chart',graphs, {});
   </script>
 </html>
