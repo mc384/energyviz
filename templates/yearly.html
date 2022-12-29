@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Yearly energy consumption</h1>
+    <h6><a href="/">Return to index page</a></h6>
+    <div id="chart" class="chart"></div>
+    <div>Worldwide energy consumption from 1965 to 2021.</div>
+  </body>
+
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script type="text/javascript">
+    var graphs = {{graphJSON | safe}};
+    Plotly.plot('chart',graphs,{});
+  </script>
+</html>
